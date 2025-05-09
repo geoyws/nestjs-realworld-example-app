@@ -12,6 +12,8 @@
     "sourceMap": true,
     "allowJs": true,
     "outDir": "./dist"
+    "rootDir": "./src",
+    "baseUrl": "./"
   },
     "include": [
     "src/**/*"
