@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, getRepository, DeleteResult } from 'typeorm';
+import { DeleteResult, FindManyOptions, FindOneOptions, FindOptions, Repository, getRepository } from 'typeorm';
+import { FollowsEntity } from '../profile/follows.entity';
+import { UserEntity } from '../user/user.entity';
 import { ArticleEntity } from './article.entity';
 import { Comment } from './comment.entity';
-import { UserEntity } from '../user/user.entity';
-import { FollowsEntity } from '../profile/follows.entity';
 import { CreateArticleDto } from './dto';
 
 import { ArticleRO, ArticlesRO, CommentsRO } from './article.interface';
@@ -36,12 +36,12 @@ export class ArticleService {
     }
 
     if ('author' in query) {
-      const author = await this.userRepository.findOne({ username: query.author });
+      const author = await this.userRepository.findOne({ username: query.author } as FindOneOptions<UserEntity>);
       qb.andWhere("article.authorId = :id", { id: author.id });
     }
 
     if ('favorited' in query) {
-      const author = await this.userRepository.findOne({ username: query.favorited });
+      const author = await this.userRepository.findOne({ username: query.favorited } as FindOneOptions<UserEntity>);
       const ids = author.favorites.map(el => el.id);
       qb.andWhere("article.authorId IN (:ids)", { ids });
     }
@@ -64,7 +64,7 @@ export class ArticleService {
   }
 
   async findFeed(userId: number, query): Promise<ArticlesRO> {
-    const _follows = await this.followsRepository.find({ followerId: userId });
+    const _follows = await this.followsRepository.find({ followerId: userId } as FindManyOptions<FollowsEntity>);
 
     if (!(Array.isArray(_follows) && _follows.length > 0)) {
       return { articles: [], articlesCount: 0 };

@@ -49,6 +49,7 @@
 		"typescript": "^5.8.3"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
 		"@types/jest": "^25.2.1",
 		"@types/node": "^13.13.4",
 		"atob": ">=2.1.0",
