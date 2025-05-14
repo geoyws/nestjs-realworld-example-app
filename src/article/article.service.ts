@@ -99,7 +99,7 @@ export class ArticleService {
   }
 
   async addComment(slug: string, commentData): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({ slug });
+    let article = await this.articleRepository.findOne({ slug } as FindOneOptions<ArticleEntity>);
 
     const comment = new Comment();
     comment.body = commentData.body;
@@ -112,9 +112,9 @@ export class ArticleService {
   }
 
   async deleteComment(slug: string, id: string): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({ slug });
+    let article = await this.articleRepository.findOne({ slug } as FindOneOptions<ArticleEntity>);
 
-    const comment = await this.commentRepository.findOne(id);
+    const comment = await this.commentRepository.findOne(id as FindOneOptions<Comment>);
     const deleteIndex = article.comments.findIndex(_comment => _comment.id === comment.id);
 
     if (deleteIndex >= 0) {
@@ -129,8 +129,8 @@ export class ArticleService {
   }
 
   async favorite(id: number, slug: string): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({ slug });
-    const user = await this.userRepository.findOne(id);
+    let article = await this.articleRepository.findOne({ slug } as FindOneOptions<ArticleEntity>);
+    const user = await this.userRepository.findOne(id as FindOneOptions<UserEntity>);
 
     const isNewFavorite = user.favorites.findIndex(_article => _article.id === article.id) < 0;
     if (isNewFavorite) {
@@ -145,8 +145,8 @@ export class ArticleService {
   }
 
   async unFavorite(id: number, slug: string): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({ slug });
-    const user = await this.userRepository.findOne(id);
+    let article = await this.articleRepository.findOne({ slug } as FindOneOptions<ArticleEntity>);
+    const user = await this.userRepository.findOne(id as FindOneOptions<UserEntity>);
 
     const deleteIndex = user.favorites.findIndex(_article => _article.id === article.id);
 
@@ -163,7 +163,7 @@ export class ArticleService {
   }
 
   async findComments(slug: string): Promise<CommentsRO> {
-    const article = await this.articleRepository.findOne({ slug });
+    const article = await this.articleRepository.findOne({ slug } as FindOneOptions<ArticleEntity>);
     return { comments: article.comments };
   }
 
@@ -188,7 +188,7 @@ export class ArticleService {
   }
 
   async update(slug: string, articleData: any): Promise<ArticleRO> {
-    let toUpdate = await this.articleRepository.findOne({ slug: slug });
+    let toUpdate = await this.articleRepository.findOne({ slug: slug } as FindOneOptions<ArticleEntity>);
     let updated = Object.assign(toUpdate, articleData);
     const article = await this.articleRepository.save(updated);
     return { article };
