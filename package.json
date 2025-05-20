@@ -38,6 +38,7 @@
 		"crypto": "^1.0.1",
 		"crypto-js": "^4.2.0",
 		"express": "^5.1.0",
+		"jose": "^6.0.11",
 		"jsonwebtoken": "^9.0.2",
 		"mysql": "^2.18.1",
 		"passport-jwt": "^4.0.1",
@@ -51,6 +52,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@types/express": "^5.0.1",
 		"@types/jest": "^29.5.14",
 		"@types/node": "^22.15.18",
 		"atob": "^2.1.2",
