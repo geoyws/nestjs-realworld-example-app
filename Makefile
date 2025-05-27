@@ -12,7 +12,7 @@ dev:
 test:
 	docker-compose -p $(PROJECT_NAME)_test \
 		-f $(BASE_DC) \
-		-f ${TEST_DC) \
+		-f $(TEST_DC) \
 		up --build --abort-on-container-exit
 prod:
 	docker-compose -p $(PROJECT_NAME)_prod \
