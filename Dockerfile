@@ -38,7 +38,7 @@ FROM base AS builder
 
 COPY . .
 
-RUN pnpm build
+RUN pnpm build:prod
 
 
 # ------------------------

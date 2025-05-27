@@ -3,10 +3,10 @@
 	"version": "2.0.0",
 	"description": "[![Build Status](https://travis-ci.org/anishkny/node-express-realworld-example-app.svg?branch=master)](https://travis-ci.org/anishkny/node-express-realworld-example-app)",
 	"main": "index.js",
+	"packageManager": "pnpm@8.6.0",
 	"scripts": {
-		"start": "node index.js",
-		"start:watch": "nodemon",
-		"prestart:prod": "tsc",
+		"dev": "nodemon",
+		"build:prod": "tsc",
 		"start:prod": "node dist/main.js",
 		"test": "jest --config=jest.json",
 		"test:watch": "jest --watch --config=jest.json",
