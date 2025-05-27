@@ -1,20 +1,24 @@
 PROJECT_NAME=njsrw
-BASE_COMPOSE=docker-compose.yaml
+DC=docker-compose
+BASE_DC=$(DC).yaml
+DEV_DC=$(DC).dev.yaml
+TEST_DC=$(DC).test.yaml
+PROD_DC=$(DC).prod.yaml
 
 dev:
 	docker-compose -p $(PROJECT_NAME)_dev \
-		-f $(BASE_COMPOSE) \
-		-f docker-compose.dev.yaml \
+		-f $(BASE_DC) \
+		-f $(DEV_DC) \
 		up --build
 test:
 	docker-compose -p $(PROJECT_NAME)_test \
-		-f $(BASE_COMPOSE) \
-		-f docker-compose.test.yaml \
+		-f $(BASE_DC) \
+		-f ${TEST_DC) \
 		up --build --abort-on-container-exit
 prod:
 	docker-compose -p $(PROJECT_NAME)_prod \
-		-f $(BASE_COMPOSE) \
-		-f docker-compose.prod.yaml \
+		-f $(BASE_DC) \
+		-f $(PROD_DC) \
 		up --build
 ddown:
 	docker-compose -p ${PROJECT_NAME}_dev down
