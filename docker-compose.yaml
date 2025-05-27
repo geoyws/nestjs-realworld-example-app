@@ -13,12 +13,12 @@ services:
 
   db:
     image: postgres:17-alpine
-    container_name: realworld-postgres
+    container_name: pg
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nestjsrealworld
+      POSTGRES_DB: nestjs_realworld
     ports:
       - '5432:5432'
     volumes:
