@@ -1,5 +1,5 @@
 services:
-  app:
+  api:
     build:
       context: .
     env_file:
@@ -8,12 +8,12 @@ services:
     depends_on:
       - db_test
 
-  db_test:
+  db:
     image: postgres:17-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nestjs_realworld_test
+      POSTGRES_DB: njsrw
     ports:
       - '5433:5432'  # optional if CI-only
     tmpfs:

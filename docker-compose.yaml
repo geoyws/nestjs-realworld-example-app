@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  app:
-    container_name: nestjs-realworld
+  api:
+    container_name: api 
     build:
       context: .
       dockerfile: Dockerfile
@@ -18,7 +18,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nestjs_realworld
+      POSTGRES_DB: njsrw 
     ports:
       - '5432:5432'
     volumes:
