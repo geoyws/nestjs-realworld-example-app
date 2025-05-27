@@ -1,9 +1,8 @@
 PROJECT_NAME=njsrw
-DC=docker-compose
-BASE_DC=$(DC).yaml
-DEV_DC=$(DC).dev.yaml
-TEST_DC=$(DC).test.yaml
-PROD_DC=$(DC).prod.yaml
+BASE_DC=docker-compose.yaml
+DEV_DC=docker-compose.dev.yaml
+TEST_DC=docker-compose.test.yaml
+PROD_DC=docker-compose.prod.yaml
 
 dev:
 	docker-compose -p $(PROJECT_NAME)_dev \
@@ -38,3 +37,4 @@ tps:
 	docker-compose -p ${PROJECT_NAME}_test ps
 pps:
 	docker-compose -p ${PROJECT_NAME}_prod ps
+
